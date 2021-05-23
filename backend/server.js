@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
+const db = require('./models');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-const db = require('./models');
 
 const postsRouter = require('./routes/Posts');
 app.use("/posts", postsRouter);
