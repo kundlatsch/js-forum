@@ -1,40 +1,20 @@
-import {  useEffect, useState } from "react";
-
 import './App.css';
-import api from './services/forum-api';
-
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import Home from './pages/Home';
+import CreatePost from './pages/CreatePost';
 
 function App() {
 
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    api.get("/posts").then((res) => {
-      setPosts(res.data);
-    });
-  }, []);
-
   return (
     <div className="App">
-      {
-        posts.map((value, key) => {
-          return (
-            <div className="post">
-              <div className="title">
-                {value.title}
-              </div>
-
-              <div className="body">
-                {value.postText}
-              </div>
-
-              <div className="footer">
-                {value.username}
-              </div>
-            </div>
-          );
-        })
-      }
+      <Router>
+        <Link to="createpost">Create a Post</Link>
+        <Link to="/">Home</Link>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/createpost" exact component={CreatePost} />
+        </Switch>
+      </Router>
     </div>
   );
 }
