@@ -9,7 +9,13 @@ function Home() {
 
   useEffect(() => {
     api.get("/posts").then((res) => {
-      setPosts(res.data);
+      let data = res.data
+      data.map((post) => {
+        if (post.postText.length > 347) {
+          post.postText = post.postText.substring(0, 347) + "..." 
+        }
+      })
+      setPosts(data);
     });
   }, []);
 

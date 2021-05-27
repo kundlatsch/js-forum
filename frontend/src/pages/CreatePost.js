@@ -14,7 +14,7 @@ function CreatePost() {
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required().max(255),
-    postText: Yup.string().required().max(255),
+    postText: Yup.string().required().max(1000),
     username: Yup.string().required().max(255)
   });
 

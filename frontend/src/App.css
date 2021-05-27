@@ -40,11 +40,12 @@ body {
   margin: 20px;
   background-color: antiquewhite;
   box-shadow: 5px 5px #88888815;
+  transition: 0.4s;
 }
 
 .post:hover {
   cursor: pointer;
-  border: 1px solid rgba(95, 95, 95, 0.24);
+  box-shadow: 5px 5px #88888834;
 }
 
 .post .title {
