@@ -18,7 +18,6 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  
 }
 
 * {
@@ -167,4 +166,31 @@ body {
 .createPost button:hover {
   background-color: rgb(76, 101, 214);
   cursor: pointer;
+}
+
+/* POST PAGE */
+
+.postPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  width: 40%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 40px;
+  background-color: antiquewhite;
+  box-shadow: 5px 5px #88888815;
+  padding: 20px;
+}
+
+.postPage h2 {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.postPage .postFooter { 
+  height: 10%;
+  flex-direction: row;
+  padding: 10px;
 }

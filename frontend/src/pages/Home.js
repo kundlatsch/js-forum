@@ -1,7 +1,7 @@
 import React from 'react'
 import api from '../services/forum-api';
 import {  useEffect, useState } from "react";
-
+import { useHistory } from "react-router-dom";
 
 function Home() {
 
@@ -19,12 +19,16 @@ function Home() {
     });
   }, []);
 
+  let history = useHistory();
+
   return (
     <div className="posts">
       {
         posts.map((value, key) => {
           return (
-            <div className="post">
+            <div className="post" onClick={() => {
+              history.push(`/post/${value.id}`)
+            }}>
                 <div className="title">
                 {value.title}
                 </div>
