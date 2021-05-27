@@ -64,7 +64,10 @@ body {
 .post .body {
   width: 80%;
   height: 80%;
-  margin: 20px;
+  margin: 10%;
+  margin-top: 10px;
+  text-align: justify;
+  font-size: 14px;
 }
 
 .post .footer {
@@ -182,6 +185,7 @@ body {
   background-color: antiquewhite;
   box-shadow: 5px 5px #88888815;
   padding: 20px;
+  text-align: justify;
 }
 
 .postPage h2 {

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useHistory } from "react-router-dom";
 
 import api from '../services/forum-api';
 
 function CreatePost() {
+  
+  let history = useHistory();
 
   const initialValues = {
     title: "",
@@ -20,7 +23,7 @@ function CreatePost() {
 
   const onSubmit = (data) => {
     api.post("/posts", data).then((res) => {
-      console.log('ok')
+      history.push("/");
     });
   };
 
