@@ -59,7 +59,7 @@ function CreatePost() {
             placeholder="Ex. Taguma..."
           />
 
-          <button type="submit">Create Post</button>
+          <button type="submit" id="bluebutton">Create Post</button>
 
         </Form>
       </Formik>

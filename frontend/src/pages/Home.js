@@ -11,8 +11,8 @@ function Home() {
     api.get("/posts").then((res) => {
       let data = res.data
       data.map((post) => {
-        if (post.postText.length > 347) {
-          post.postText = post.postText.substring(0, 347) + "..." 
+        if (post.postText.length > 367) {
+          post.postText = post.postText.substring(0, 367) + "..." 
         }
       })
       setPosts(data);
@@ -26,7 +26,7 @@ function Home() {
       {
         posts.map((value, key) => {
           return (
-            <div className="post" onClick={() => {
+            <div key={key} className="post" onClick={() => {
               history.push(`/post/${value.id}`)
             }}>
                 <div className="title">

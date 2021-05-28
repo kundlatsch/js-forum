@@ -77,7 +77,7 @@ body {
   height: 10%;
   flex-direction: row;
   padding: 10px;
-  padding-left: 20px;
+  padding-left: 30px;
 }
 
 .topbar {
@@ -104,7 +104,7 @@ body {
   align-items: center;
   height: 80vh;
   width: 40%;
-  margin-top: 5%;
+  margin-top: 50px;
   border-radius: 40px;
   background-color: antiquewhite;
   box-shadow: 5px 5px #88888815;
@@ -137,6 +137,7 @@ body {
 }
 
 .createPost #inputCreatePost:focus {
+  outline: none !important;
   border: 2px solid rgba(116, 129, 243, 0.87);
 }
 
@@ -151,22 +152,27 @@ body {
 }
 
 .createPost #inputPostBody:focus {
+  outline: none !important;
   border: 2px solid rgba(116, 129, 243, 0.87);
 }
 
 .createPost button {
+
+  width: 20%;
+  margin-left: 80%;
+}
+
+#bluebutton {
   margin-top: 15px;
   height: 40px;
   border: none;
   background-color: rgb(98, 191, 248);
   border-radius: 5px;
   color: white;
-  width: 20%;
-  margin-left: 80%;
   transition: 0.4s;
 }
 
-.createPost button:hover {
+#bluebutton:hover {
   background-color: rgb(76, 101, 214);
   cursor: pointer;
 }
@@ -178,7 +184,7 @@ body {
   flex-direction: column;
   align-items: center;
   height: auto;
-  width: 40%;
+  width: 60%;
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 40px;
@@ -188,13 +194,87 @@ body {
   text-align: justify;
 }
 
-.postPage h2 {
+.postPage .mainPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.postPage .mainPost h2 {
   text-transform: uppercase;
   margin-bottom: 10px;
 }
 
-.postPage .postFooter { 
+.postPage .mainPost .postAuthor { 
   height: 10%;
   flex-direction: row;
   padding: 10px;
+}
+
+.postPage hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color:#555555;
+  height: 1px;
+  margin-bottom: 20px;
+}
+
+.postPage .postReplies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.postReplies span {
+  font-weight: bold;
+}
+
+.postReplies .repliesList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.repliesList .reply {
+  border-radius: 20px;
+  background-color: rgba(52, 52, 255, 0.075);
+  width: 80%;
+  margin-top: 20px;
+  min-height: 100px;
+  padding: 20px;
+}
+
+.postReplies .replyContainer {
+  height: auto;
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.replyContainer textarea {
+  height: 200px;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid rgba(116, 129, 243, 0.39);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.replyContainer textarea:focus {
+  outline: none !important;
+  border: 2px solid rgba(116, 129, 243, 0.87);
+}
+
+
+.replyContainer button {
+  width: 15%;
+  margin-left: 65%;
 }

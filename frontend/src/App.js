@@ -11,7 +11,7 @@ function App() {
       <Router>
         <div className="topbar">
           <Link to="/">Home</Link>
-          <Link to="createpost">Create a Post</Link>
+          <Link to="/createpost">Create a Post</Link>
         </div>
         <Switch>
           <Route path="/" exact component={Home} />
