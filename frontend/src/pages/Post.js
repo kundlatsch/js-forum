@@ -24,12 +24,23 @@ function Post() {
     api.post('/comments', {
       commentBody: reply,
       PostId: id,
-    }).then(() => {
-      const replyToAdd = {
-        commentBody: reply
-      };
-      setReplies([...replies, replyToAdd]);
-      setReply("");
+    },
+    {
+      headers: {
+        accessToken: localStorage.getItem("accessToken"),
+      }
+    }).then((res) => {
+      if (res.data.error) {
+        alert("Error trying to comment!");
+      }
+      else {
+        const replyToAdd = {
+          username: res.data.username,
+          commentBody: reply
+        };
+        setReplies([...replies, replyToAdd]);
+        setReply("");
+      }
     }); 
   }
 
@@ -49,6 +60,10 @@ function Post() {
           {replies.map((value, key) => {
             return (
               <div key={key} className="reply">
+                <div className="username">
+                  <label>{`${value.username} says:`}</label>
+                </div>
+                <br></br>
                 {value.commentBody}
               </div>
             );

@@ -28,7 +28,7 @@ function CreatePost() {
   };
 
   return (
-    <div className="createPost">
+    <div className="defaultContainer">
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
@@ -38,7 +38,7 @@ function CreatePost() {
           <label>Title</label>
           <ErrorMessage name="title" component="span" />
           <Field 
-            id="inputCreatePost" 
+            id="defaultInput" 
             name="title"
             placeholder="Add Title..."
           />
@@ -54,7 +54,7 @@ function CreatePost() {
           <label>Username</label>
           <ErrorMessage name="username" component="span" />
           <Field 
-            id="inputCreatePost" 
+            id="defaultInput" 
             name="username"
             placeholder="Ex. Taguma..."
           />

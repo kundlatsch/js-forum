@@ -35,7 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 25%;
-  height: 40%;
+  height: 350px;
   border-radius: 40px;
   margin: 20px;
   background-color: antiquewhite;
@@ -98,7 +98,7 @@ body {
 
 /* CREATE POST */
 
-.createPost {
+.defaultContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,22 +111,22 @@ body {
   padding-top: 50px;
 }
 
-.createPost span {
+.defaultContainer span {
   color: rgb(146, 0, 0);
 }
 
-.createPost .formContainer {
+.defaultContainer .formContainer {
   display: flex;
   flex-direction: column;
   width: 80%;
 }
 
-.createPost label {
+.defaultContainer label {
   font-size: 20px;
   color: rgb(23, 36, 151);
 }
 
-.createPost #inputCreatePost {
+#defaultInput {
   height: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -136,12 +136,12 @@ body {
   font-size: 20px;
 }
 
-.createPost #inputCreatePost:focus {
+#defaultInput:focus {
   outline: none !important;
   border: 2px solid rgba(116, 129, 243, 0.87);
 }
 
-.createPost #inputPostBody {
+.defaultContainer #inputPostBody {
   height: 400px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -151,12 +151,12 @@ body {
   font-size: 20px;
 }
 
-.createPost #inputPostBody:focus {
+.defaultContainer #inputPostBody:focus {
   outline: none !important;
   border: 2px solid rgba(116, 129, 243, 0.87);
 }
 
-.createPost button {
+.defaultContainer button {
 
   width: 20%;
   margin-left: 80%;
@@ -239,6 +239,11 @@ body {
   width: 100%;
 }
 
+.repliesList label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
 .repliesList .reply {
   border-radius: 20px;
   background-color: rgba(52, 52, 255, 0.075);
@@ -265,7 +270,7 @@ body {
   border: 2px solid rgba(116, 129, 243, 0.39);
   border-radius: 5px;
   padding: 10px;
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .replyContainer textarea:focus {
@@ -277,4 +282,18 @@ body {
 .replyContainer button {
   width: 15%;
   margin-left: 65%;
+}
+
+/* AUTH */
+
+#register {
+  height: 300px;
+}
+
+#login {
+  height: 300px;
+}
+
+#login button {
+  margin-left: 0;
 }
