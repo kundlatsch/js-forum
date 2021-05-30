@@ -11,7 +11,11 @@ import api from './services/forum-api';
 
 function App() {
 
-  const [authState, setAuthState] = useState(false);
+  const [authState, setAuthState] = useState({
+    username: "",
+    id: 0,
+    status: false,
+  });
 
   useEffect(() => {
     api.get('/auth/validateUser', {
@@ -20,13 +24,25 @@ function App() {
       }
     }).then((res) =>{
       if (res.data.error) {
-        setAuthState(false);
+        setAuthState({...authState, status: false });
       }
       else {
-        setAuthState(true);
+        setAuthState({
+          username: res.data.username,
+          id: res.data.id,
+          status: true,
+        });
       }
     });
   }, []);
+
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+      setAuthState({username: "",
+      id: 0,
+      status: false,
+    });
+  };
 
   return (
     <div className="App">
@@ -35,10 +51,20 @@ function App() {
           <div className="topbar">
             <Link to="/">Home</Link>
             <Link to="/createpost">Create a Post</Link>
-            {!authState && (
+            {!authState.status ? (
               <>
                 <Link to="/login">Login</Link>
                 <Link to="/register">Registration</Link>
+              </>
+            ) : (
+              <>
+              <h2 id="username">Welcome, {authState.username}</h2>
+              <button 
+                id="logout"
+                onClick={logout}
+              >
+                Logout
+              </button>
               </>
             )}
           </div>

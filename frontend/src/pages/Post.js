@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from "react-router-dom";
 import api from '../services/forum-api';
+import { AuthContext } from '../helpers/AuthContext';
 
 function Post() {
 
@@ -9,6 +10,7 @@ function Post() {
   const [post, setPost] = useState({});
   const [replies, setReplies] = useState([]);
   const [reply, setReply] = useState("");
+  const { authState } = useContext(AuthContext);
 
   useEffect(() => {
     api.get(`/posts/byId/${id}`).then((res) => {
@@ -36,13 +38,26 @@ function Post() {
       else {
         const replyToAdd = {
           username: res.data.username,
+          id: res.data.id,
           commentBody: reply
         };
         setReplies([...replies, replyToAdd]);
         setReply("");
       }
     }); 
-  }
+  };
+
+  const deleteReply = (id) => {
+    api.delete(`/comments/${id}`, {
+      headers: {
+        accessToken: localStorage.getItem("accessToken"),
+      }
+    }).then(() => {
+      setReplies(replies.filter((reply) => {
+        return reply.id != id;
+      }))
+    });
+  };
 
   return (
     <div className="postPage">
@@ -65,6 +80,21 @@ function Post() {
                 </div>
                 <br></br>
                 {value.commentBody}
+                <br></br>
+                {authState.username === value.username &&
+                  (
+                    <button 
+                      id="deleteReply"
+                      onClick={() => {
+                        deleteReply(value.id);
+                        }
+                      }
+                    >
+                      X
+                    </button>
+                  )
+                }
+                
               </div>
             );
           })}
