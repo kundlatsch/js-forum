@@ -47,6 +47,9 @@ body {
   cursor: pointer;
   box-shadow: 5px 5px #88888834;
 }
+.post .footer:hover {
+  cursor: default;
+}
 
 .post .title {
   background-color: rgb(64, 64, 240);
@@ -68,6 +71,8 @@ body {
   margin-top: 10px;
   text-align: justify;
   font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post .footer {
@@ -75,9 +80,37 @@ body {
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   height: 10%;
+  display: flex;
+  flex: 15%;
+  align-items: center;
   flex-direction: row;
-  padding: 10px;
   padding-left: 30px;
+}
+
+.post span {
+  flex: 1%;
+}
+
+.post label {
+  margin-right: 30px;
+}
+
+.post #likeBtn {
+  margin-right: 10px;
+  color: rgb(161, 163, 241);
+}
+
+.post #unlikeBtn {
+  margin-right: 10px;
+  color: rgb(64, 64, 240);
+}
+
+#likeBtn:hover {
+  cursor: pointer;
+}
+
+#unlikeBtn:hover {
+  cursor: pointer;
 }
 
 .topbar {

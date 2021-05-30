@@ -2,24 +2,36 @@ import React from 'react'
 import api from '../services/forum-api';
 import {  useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 
 function Home() {
 
   const [posts, setPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
+  let history = useHistory();
 
   useEffect(() => {
-    api.get("/posts").then((res) => {
-      let data = res.data
+    api.get(
+      "/posts",
+      {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        }
+      }
+    ).then((res) => {
+      const data = res.data.listOfPosts;
       data.map((post) => {
-        if (post.postText.length > 367) {
-          post.postText = post.postText.substring(0, 367) + "..." 
+        if (post.postText.length > 400) {
+          post.postText = post.postText.substring(0, 397) + "..." 
         }
       })
+      setLikedPosts(res.data.likedPosts.map((like) => {
+        return like.PostId;
+      }));
       setPosts(data);
     });
   }, []);
 
-  let history = useHistory();
 
   const likeAPost = async (PostId) => {
     const res = await api.post("/likes", { PostId }, {
@@ -50,6 +62,15 @@ function Home() {
         return post;
       }
     }));
+
+    if (likedPosts.includes(PostId)) {
+      setLikedPosts(likedPosts.filter((id) => {
+        return id != PostId;
+      }));
+    }
+    else {
+      setLikedPosts([...likedPosts, PostId]);
+    }
   }
 
   return (
@@ -77,10 +98,15 @@ function Home() {
                 </div>
 
                 <div className="footer">
-                {value.username}
-                <button onClick={() => {
-                  likeAPost(value.id);
-                }}> Like</button>
+                <span>{value.username}</span>
+                <ThumbUpAltIcon 
+                  id={
+                    likedPosts.includes(value.id) ? "unlikeBtn" : "likeBtn"
+                  } 
+                  onClick={() => {
+                    likeAPost(value.id);
+                  }}
+                />
                 <label>{value.Likes.length}</label>
                 </div>
             </div>
