@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import api from '../services/forum-api';
 import { AuthContext } from '../helpers/AuthContext';
 
@@ -11,6 +11,7 @@ function Post() {
   const [replies, setReplies] = useState([]);
   const [reply, setReply] = useState("");
   const { authState } = useContext(AuthContext);
+  let history = useHistory();
 
   useEffect(() => {
     api.get(`/posts/byId/${id}`).then((res) => {
@@ -47,6 +48,16 @@ function Post() {
     }); 
   };
 
+  const deletePost = async (id) => {
+    await api.delete(`posts/${id}`, {
+      headers: {
+        accessToken: localStorage.getItem("accessToken"),
+      }
+    });
+
+    history.push("/");
+  }
+
   const deleteReply = (id) => {
     api.delete(`/comments/${id}`, {
       headers: {
@@ -65,6 +76,20 @@ function Post() {
         <h2>{post.title}</h2>
         <div className="postAuthor">Author: {post.username}</div>
         <span>{post.postText}</span>
+
+        {
+          authState.username === post.username && (
+            <button 
+              id="deletePost"
+              onClick={() => {
+                deletePost(post.id);
+              }}
+            >
+              Delete Post
+            </button>
+          )
+        }
+
       </div>
       <hr></hr>
       <div className="postReplies">

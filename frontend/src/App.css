@@ -254,6 +254,7 @@ button#logout:hover {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .postPage .mainPost h2 {
@@ -352,6 +353,24 @@ button#deleteReply {
 }
 
 button#deleteReply:hover {
+  background-color: rgb(219, 93, 93);
+  cursor: pointer;
+  color: white;
+}
+
+button#deletePost {
+  border: 1px solid rgb(211, 209, 209);
+  background-color: white;
+  font-weight: bold;
+  width: 100px;
+  height: 25px;
+  border-radius: 10px;
+  margin-top:10px;
+  margin-left: 80%;
+  transition: 0.4s;
+}
+
+button#deletePost:hover {
   background-color: rgb(219, 93, 93);
   cursor: pointer;
   color: white;
