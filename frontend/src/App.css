@@ -91,6 +91,16 @@ body {
   flex: 1%;
 }
 
+#profileLink {
+  color: black;
+  text-decoration: none;
+}
+
+#profileLink:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .post label {
   margin-right: 30px;
 }
@@ -157,7 +167,7 @@ button#logout:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
+  height: 65vh;
   width: 40%;
   margin-top: 50px;
   border-radius: 40px;
@@ -388,4 +398,45 @@ button#deletePost:hover {
 
 #login button {
   margin-left: 0;
+}
+
+/* PROFILE */
+
+div.profilePage {
+  height: 80vh;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+#profileInfo {
+  flex: 40%;
+  margin-right: 5%;
+  height: 100%;
+}
+
+#profilePosts {
+  flex: 40%;
+  margin-left: 5%;
+  height: 100%;
+}
+
+.profilePagePost {
+  margin-top: 20px;
+  font-size: 18px;
+  border: 1px solid rgb(185, 179, 179);
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+  width: 80%;
+  text-align: center;
+  transition: 0.2s;
+}
+
+
+.profilePagePost:hover {
+  cursor: pointer;
+  background-color: #b6b1b1;
+  color: white;
 }

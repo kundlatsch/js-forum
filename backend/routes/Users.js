@@ -17,6 +17,18 @@ router.post("/", async (req, res) => {
     });
 });
 
+router.get("/info/:id", async (req, res) => {
+    const { id } = req.params;
+
+    const info = await Users.findByPk(id, {
+        attributes: {
+            exclude: ["password"],
+        },
+    });
+
+    res.json(info);
+});
+
 router.post("/login", async (req, res) => {
     const { username, password } = req.body;
 
@@ -55,5 +67,7 @@ router.post("/login", async (req, res) => {
 router.get("/validateUser", validateToken, (req, res) => {
     res.json(req.user);
 });
+
+
 
 module.exports = router;

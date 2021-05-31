@@ -1,7 +1,7 @@
 import React from 'react'
 import api from '../services/forum-api';
 import {  useEffect, useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import { AuthContext } from '../helpers/AuthContext';
 
@@ -106,7 +106,11 @@ function Home() {
                 </div>
 
                 <div className="footer">
-                <span>{value.username}</span>
+                <span>
+                  <Link id="profileLink" to={`/profile/${value.UserId}`}>
+                    {value.username}
+                  </Link>
+                </span>
                 <ThumbUpAltIcon 
                   id={
                     likedPosts.includes(value.id) ? "unlikeBtn" : "likeBtn"
