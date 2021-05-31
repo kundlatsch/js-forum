@@ -272,6 +272,11 @@ button#logout:hover {
   margin-bottom: 10px;
 }
 
+.postPage .mainPost h2:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .postPage .mainPost .postAuthor { 
   height: 10%;
   flex-direction: row;

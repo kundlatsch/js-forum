@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import api from '../services/forum-api';
 import { AuthContext } from '../helpers/AuthContext';
+import FormDialog from '../components/FormDialog';
+import { Form } from 'formik';
 
 function Post() {
 
@@ -10,6 +12,13 @@ function Post() {
   const [post, setPost] = useState({});
   const [replies, setReplies] = useState([]);
   const [reply, setReply] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogConfig, setDialogConfig] = useState({
+    title: "",
+    info: "",
+    textField: "",
+  });
+  const [dialogReturn, setDialogReturn] = useState("aaaa");
   const { authState } = useContext(AuthContext);
   let history = useHistory();
 
@@ -22,6 +31,14 @@ function Post() {
       setReplies(res.data);
     });
   }, []);
+
+  const handleClickDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
 
   const addReply = () => {
     api.post('/comments', {
@@ -58,6 +75,28 @@ function Post() {
     history.push("/");
   }
 
+  const editPost = () => {
+    setDialogConfig({
+      title: "Edit title",
+      info: "Enter a new title for the post:",
+      textField: "text",
+    })
+    handleClickDialogOpen();
+  }
+
+  const handleEditTitle = (value) => {
+    setDialogReturn(value);
+    setPost({...post, title: value});
+    api.put("/posts/title", {
+        title: value,
+        id,
+      }, {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+    });
+  }
+
   const deleteReply = (id) => {
     api.delete(`/comments/${id}`, {
       headers: {
@@ -71,9 +110,22 @@ function Post() {
   };
 
   return (
+    <>
+    <FormDialog 
+      open={dialogOpen} 
+      handleClose={handleDialogClose} 
+      title={dialogConfig.title}
+      info={dialogConfig.info}
+      textField={dialogConfig.textField}
+      handleReturn={handleEditTitle}
+    />
     <div className="postPage">
       <div className="mainPost">
-        <h2>{post.title}</h2>
+        <h2 onClick={() => {
+          if (authState.username === post.username) {
+            editPost();
+          }
+        }}>{post.title}</h2>
         <div className="postAuthor">Author: {post.username}</div>
         <span>{post.postText}</span>
 
@@ -144,6 +196,7 @@ function Post() {
 
       </div>
     </div>
+    </>
   )
 }
 

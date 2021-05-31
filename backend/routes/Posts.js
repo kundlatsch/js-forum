@@ -45,6 +45,14 @@ router.post("/", validateToken, async (req, res) => {
     res.json(post);
 });
 
+router.put("/title", validateToken, async (req, res) => {
+    const { title, id } = req.body;
+    await Posts.update({title}, {
+        where: {id}
+    });
+    res.json(title);
+});
+
 router.delete("/:postId", validateToken, async (req, res) => {
     const postId = req.params.postId;
 
