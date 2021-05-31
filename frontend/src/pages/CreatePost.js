@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useHistory } from "react-router-dom";
+import { AuthContext } from '../helpers/AuthContext';
 
 import api from '../services/forum-api';
 
 function CreatePost() {
   
+  const { authState } = useContext(AuthContext);
   let history = useHistory();
+
+  useEffect(() => {
+    if (!authState.status) {
+      history.push("/login");
+    }
+  }, [])
 
   const initialValues = {
     title: "",

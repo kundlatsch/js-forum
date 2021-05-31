@@ -1,16 +1,24 @@
 import React from 'react'
 import api from '../services/forum-api';
-import {  useEffect, useState } from "react";
+import {  useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import { AuthContext } from '../helpers/AuthContext';
 
 function Home() {
 
   const [posts, setPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
+  const { authState } = useContext(AuthContext);
   let history = useHistory();
 
   useEffect(() => {
+
+    if (!authState.status) {
+      history.push('/login');
+      return;
+    }
+
     api.get(
       "/posts",
       {
