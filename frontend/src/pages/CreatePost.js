@@ -20,17 +20,21 @@ function CreatePost() {
   const initialValues = {
     title: "",
     postText: "",
-    username: ""
+    // username: ""
   }
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required().max(255),
     postText: Yup.string().required().max(1000),
-    username: Yup.string().required().max(255)
+    // username: Yup.string().required().max(255)
   });
 
   const onSubmit = (data) => {
-    api.post("/posts", data).then((res) => {
+    api.post("/posts", data, {
+      headers: {
+        accessToken: localStorage.getItem("accessToken"),
+      }
+    }).then((res) => {
       history.push("/");
     });
   };
@@ -59,13 +63,13 @@ function CreatePost() {
           >
           </Field>
 
-          <label>Username</label>
+          {/* <label>Username</label>
           <ErrorMessage name="username" component="span" />
           <Field 
             id="defaultInput" 
             name="username"
             placeholder="Ex. Taguma..."
-          />
+          /> */}
 
           <button type="submit" id="bluebutton">Create Post</button>
 
