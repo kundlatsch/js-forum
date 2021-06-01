@@ -23,3 +23,16 @@ cd frontend
 npm install
 npm start
 ```
+
+## Screens
+
+
+![Login](/images/login.png)
+
+![Home](/images/home.png)
+
+![New Post](/images/newPost.png)
+
+![Post](/images/post.png)
+
+![Profile](/images/profile.png)
