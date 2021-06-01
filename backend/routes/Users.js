@@ -68,6 +68,39 @@ router.get("/validateUser", validateToken, (req, res) => {
     res.json(req.user);
 });
 
+router.put("/changePassword", validateToken, async (req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    const user = await Users.findOne({ where: {username: req.user.username }});
 
+    const match = await bcrypt.compare(oldPassword, user.password);
+    if (!match) {
+        res.json({
+            error: "Wrong password entered."
+        });
+    }
+
+    const hash = await bcrypt.hash(newPassword, 10)
+    Users.update({
+        password: hash,
+    }, {
+        where: {
+            username: req.user.username,
+        },
+    });
+    res.json("OK");
+});
+
+
+router.put("/changeUsername", validateToken, async (req, res) => {
+    const { newUsername } = req.body;
+    await Users.update({
+        username: newUsername,
+    }, {
+        where: {
+            username: req.user.username,
+        },
+    });
+    res.json("OK");
+});
 
 module.exports = router;

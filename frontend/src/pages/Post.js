@@ -3,7 +3,6 @@ import { useParams, useHistory } from "react-router-dom";
 import api from '../services/forum-api';
 import { AuthContext } from '../helpers/AuthContext';
 import FormDialog from '../components/FormDialog';
-import { Form } from 'formik';
 
 function Post() {
 
@@ -18,7 +17,7 @@ function Post() {
     info: "",
     textField: "",
   });
-  const [dialogReturn, setDialogReturn] = useState("aaaa");
+  const [dialogReturn, setDialogReturn] = useState("");
   const { authState } = useContext(AuthContext);
   let history = useHistory();
 
